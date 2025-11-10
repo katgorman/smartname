@@ -2,7 +2,7 @@ import os
 import difflib
 from googleapiclient.discovery import build
 
-API_KEY = "AIzaSyBkGjcj7P83le3HaTQo5BL9mkWKlnplpg0"  # ur key for YouTube Data API v3
+API_KEY = "YOUR_KEY_HERE" # ur key for YouTube Data API v3
 youtube = build("youtube", "v3", developerKey=API_KEY)
 
 def search_official_audio(query):
