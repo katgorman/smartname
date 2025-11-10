@@ -10,7 +10,7 @@ context-aware file name suggestions.
 Install dependencies:
 
 ```bash
-pip install requests PyMuPDF
+pip install requests python-docx python-pptx PyMuPDF
 ```
 
 Install **Ollama** (https://ollama.ai) and pull a model with vision capabilities:
