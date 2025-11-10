@@ -50,11 +50,3 @@ Example:
 Example:  
 `AI Ethics Paper.docx`
 
----
-
-**Tip:**  
-Use the `--case` argument in the CLI to select your preferred style.  
-Example:  
-```bash
-python smartname.py data/ --case kebab-case
-```
