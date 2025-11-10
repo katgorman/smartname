@@ -95,7 +95,7 @@ def apply_casing(text: str, style: str) -> str:
 
 # generate filenames
 def generate_filename(path: Path, model: str) -> str:
-    prompt = ("Analyze this file and suggest a concise, 5-8 word descriptive filename. "
+    prompt = ("Analyze this file and suggest a concise, 2-5 word descriptive filename. "
               "Use underscores instead of spaces. Do not include the file extension. "
               "Respond with only the filename and nothing else.")
     ext = path.suffix.lower()
@@ -115,7 +115,8 @@ def generate_filename(path: Path, model: str) -> str:
 
 # CLI entry point
 def main():
-    p = argparse.ArgumentParser(description="SmartName - AI-assisted file organizer")
+    suggestions = []
+    p = argparse.ArgumentParser(description="SmartName - AI-assisted file renamer")
     p.add_argument("directory", help="Target folder")
     p.add_argument("--model", default="llama3.2-vision", help="Ollama model to use")
     p.add_argument("--case", default="snake_case",
@@ -136,6 +137,7 @@ def main():
             print(f"Processing {f.name}...")
             suggestion = generate_filename(f, args.model)
             new_name = apply_casing(suggestion, args.case) + f.suffix
+            suggestions.append(f,new_name)
             if args.execute:
                 f.rename(f.with_name(new_name))
                 print(f"Renamed to: {new_name}\n")
@@ -143,6 +145,10 @@ def main():
                 print(f"Suggestion: {new_name}\n")
         except Exception as e:
             print(f"Error processing {f.name}: {e}\n")
+
+    print("Summary of suggestions:\n")
+    for original, new in suggestions:
+        print(f"{original.name} -> {new}")
 
 if __name__ == "__main__":
     main()
